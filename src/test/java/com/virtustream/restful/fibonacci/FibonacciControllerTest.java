@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -57,7 +58,7 @@ public class FibonacciControllerTest {
 
     @Test
     public void testGetFibonacciSequenceOf2() throws Exception {
-        when(fibonacciSequence.generate(2)).thenReturn(Arrays.asList(0, 1));
+        when(fibonacciSequence.generate(2)).thenReturn(Arrays.asList(BigInteger.ZERO, BigInteger.ONE));
         mvc.perform(get("/fibonacci/2").contentType(MediaType.APPLICATION_JSON))
         .andDo(log())
         .andExpect(status().isOk())
@@ -69,7 +70,8 @@ public class FibonacciControllerTest {
 
     @Test
     public void testGetFibonacciSequenceOf5() throws Exception {
-        when(fibonacciSequence.generate(5)).thenReturn(Arrays.asList(0, 1, 1, 2, 3));
+        when(fibonacciSequence.generate(5)).thenReturn(
+                Arrays.asList(BigInteger.ZERO, BigInteger.ONE, BigInteger.ONE, BigInteger.valueOf(2), BigInteger.valueOf(3)));
         mvc.perform(get("/fibonacci/5").contentType(MediaType.APPLICATION_JSON))
         .andDo(log())
         .andExpect(status().isOk())

@@ -1,5 +1,6 @@
 package com.virtustream.restful.fibonacci;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -21,7 +22,7 @@ public class FibonacciController {
     }
 
     @GetMapping("/fibonacci/{number}")
-    public List<Integer> getFibonacciSequence(@PathVariable int number) {
+    public List<BigInteger> getFibonacciSequence(@PathVariable int number) {
         logger.debug("getFibonacciSequence of " + number);
         if (number < 0) {
             throw new FibonacciException();
