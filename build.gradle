@@ -29,6 +29,15 @@ test {
 }
 
 asciidoctor {
+	sourceDir 'src/main/asciidoc'
 	inputs.dir snippetsDir
+	attributes 'snippets': file(snippetsDir)
 	dependsOn test
+}
+
+bootJar {
+	dependsOn asciidoctor
+	from ("${asciidoctor.outputDir}/html5") {
+		into 'static'
+	}
 }

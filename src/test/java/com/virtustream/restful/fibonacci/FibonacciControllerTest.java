@@ -2,6 +2,7 @@ package com.virtustream.restful.fibonacci;
 
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
+import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -12,6 +13,7 @@ import java.util.Collections;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
@@ -20,6 +22,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(FibonacciController.class)
+@AutoConfigureRestDocs(outputDir = "build/generated-snippets")
 public class FibonacciControllerTest {
 
     @Autowired
@@ -48,7 +51,8 @@ public class FibonacciControllerTest {
         mvc.perform(get("/fibonacci/0").contentType(MediaType.APPLICATION_JSON))
         .andDo(log())
         .andExpect(status().isOk())
-        .andExpect(jsonPath("$.*", hasSize(0)));
+        .andExpect(jsonPath("$.*", hasSize(0)))
+        .andDo(document("fibonacci/0"));
     }
 
     @Test
@@ -59,7 +63,8 @@ public class FibonacciControllerTest {
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.*", hasSize(2)))
         .andExpect(jsonPath("[0]", equalTo(0)))
-        .andExpect(jsonPath("[1]", equalTo(1)));
+        .andExpect(jsonPath("[1]", equalTo(1)))
+        .andDo(document("fibonacci/2"));
     }
 
     @Test
@@ -73,7 +78,8 @@ public class FibonacciControllerTest {
         .andExpect(jsonPath("[1]", equalTo(1)))
         .andExpect(jsonPath("[2]", equalTo(1)))
         .andExpect(jsonPath("[3]", equalTo(2)))
-        .andExpect(jsonPath("[4]", equalTo(3)));
+        .andExpect(jsonPath("[4]", equalTo(3)))
+        .andDo(document("fibonacci/5"));
     }
 
 }

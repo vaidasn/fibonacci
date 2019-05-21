@@ -1,0 +1,51 @@
+= Fibonacci RESTful Documentation
+
+Here are some example output for a service running at http://localhost:8080:
+
+== Example 1
+
+=== Curl request
+
+include::{snippets}/fibonacci/0/curl-request.adoc[]
+
+[[example_http_request]]
+=== HTTP request
+
+include::{snippets}/fibonacci/0/http-request.adoc[]
+
+[[example_http_response]]
+=== HTTP response
+
+include::{snippets}/fibonacci/0/http-response.adoc[]
+
+== Example 2
+
+=== Curl request
+
+include::{snippets}/fibonacci/2/curl-request.adoc[]
+
+[[example_http_request]]
+=== HTTP request
+
+include::{snippets}/fibonacci/2/http-request.adoc[]
+
+[[example_http_response]]
+=== HTTP response
+
+include::{snippets}/fibonacci/2/http-response.adoc[]
+
+== Example 3
+
+=== Curl request
+
+include::{snippets}/fibonacci/5/curl-request.adoc[]
+
+[[example_http_request]]
+=== HTTP request
+
+include::{snippets}/fibonacci/5/http-request.adoc[]
+
+[[example_http_response]]
+=== HTTP response
+
+include::{snippets}/fibonacci/5/http-response.adoc[]
